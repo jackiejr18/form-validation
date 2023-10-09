@@ -1,7 +1,7 @@
 var nameError = document.getElementById('name-error');
 var phoneError = document.getElementById('phone-error');
 var emailError = document.getElementById('email-error');
-var messegeError = document.getElementById('message-error');
+var messageError = document.getElementById('message-error');
 var submitError = document.getElementById('subit-error');
 
 function validateName() {
@@ -46,11 +46,27 @@ function validateEmail() {
     emailError.innerHTML = 'Email is required';
     return false;
   }
-  if(!email.match(/^[A-Za-z]\._\-[0-9]*[@][A-Za-z]*[\.][a-z]{2,4}$/)) {
+  if(!email.match(/^[A-Za-z\._\-[0-9]*[@][A-Za-z]*[\.][a-z]{2,4}$/)) {
     emailError.innerHTML = 'Email Invalid';
     return false;
   }
 
   emailError.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
   return true;
+}
+
+function validateMessage() {
+  var message = document.getElementById('contact-message').value;
+  var required = 30;
+  var left = required - message.length;
+  
+  if(left > 0) {
+    messageError.innerHTML = left + ' more characters required';
+    return false; 
+  }
+
+  messageError.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+  return true;
+
+
 }
